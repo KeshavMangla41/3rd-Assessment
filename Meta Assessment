@@ -1,0 +1,17 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8;0;
+
+contract SimpleBank {
+    mapping(address => uint) private balances;
+    address public owner;
+    bool public isActive;
+
+    constructor() {
+        owner = msg.sender;
+        isActive = true;
+    }
+
+    modifier onlyOwner() {
+        require(msg.sender == owner, "Only the owner can call this function.");
+        _;
+    }
